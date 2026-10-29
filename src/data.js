@@ -3,6 +3,9 @@
 // Enlace al quiz de evaluación de la experiencia (Microsoft Forms).
 export const QUIZ_URL = 'https://forms.cloud.microsoft/r/XzxHjTzrBG'
 
+// Dirección pública del sitio (GitHub Pages), usada por el código QR y el botón de copiar enlace.
+export const SITE_URL = 'https://d240021.github.io/gastronomia-afrolimonense/'
+
 export const secciones = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'historia', label: 'Historia' },

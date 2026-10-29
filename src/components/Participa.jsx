@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
-import { QUIZ_URL } from '../data'
+import { QUIZ_URL, SITE_URL } from '../data'
 import { Reveal, Section, SectionHeader } from './ui'
 
 const preguntasEjemplo = [
@@ -10,16 +10,11 @@ const preguntasEjemplo = [
 ]
 
 export default function Participa() {
-  const [url, setUrl] = useState('')
   const [copiado, setCopiado] = useState(false)
-
-  useEffect(() => {
-    setUrl(window.location.href.split('#')[0])
-  }, [])
 
   const copiar = async () => {
     try {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(SITE_URL)
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
     } catch {
@@ -62,11 +57,7 @@ export default function Participa() {
           <Reveal delay={150} className="flex flex-col items-center rounded-3xl border border-coco/15 bg-coco/5 p-6 text-center md:p-8">
             <p className="text-xs font-semibold uppercase tracking-widest text-mango">Escanea con tu celular</p>
             <div className="mt-5 rounded-2xl bg-coco p-4 shadow-2xl transition duration-500 hover:rotate-2 hover:scale-105">
-              {url ? (
-                <QRCodeSVG value={url} size={180} fgColor="#12301f" bgColor="#fbf5ea" level="M" />
-              ) : (
-                <div className="h-[180px] w-[180px]" />
-              )}
+              <QRCodeSVG value={SITE_URL} size={180} fgColor="#12301f" bgColor="#fbf5ea" level="M" />
             </div>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-coco/75">
               Abre esta página en tu teléfono.
