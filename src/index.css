@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --color-coco: #fbf5ea;      /* crema de coco */
+  --color-arena: #f1e6d2;
+  --color-selva: #1f4d3a;     /* verde selva */
+  --color-selva-oscuro: #12301f;
+  --color-hoja: #3f7a52;
+  --color-mango: #f2b33d;     /* amarillo mango */
+  --color-achiote: #c2412d;   /* rojo achiote */
+  --color-cacao: #3b2418;
+  --color-tinta: #2a211b;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-spin-slow: spin 40s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-coco);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cursor de mano en todo lo cliqueable */
+a[href],
+button:not(:disabled),
+summary,
+label[for],
+select,
+[role="button"],
+[role="tab"] {
+  cursor: pointer;
+}
+
+/* Revelado al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Textura sutil tipo papel */
+.grain {
+  background-image: radial-gradient(rgba(59, 36, 24, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Foto de archivo */
+.foto-archivo {
+  filter: sepia(0.25) contrast(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
